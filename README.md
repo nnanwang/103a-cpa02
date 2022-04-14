@@ -31,7 +31,10 @@ A large fraction of software development involves designing, implementing, deplo
 
 
 ## How to Submit your work
-Submit a link to your app on the mastery.cs.brandeis.edu app and answer the following few reflection questions:
+Submit on mastery
+- a link to your app on heroku 
+- a link to your repository
+- answer the following few reflection questions:
 
      a. what did you learn while doing this assignment
      
