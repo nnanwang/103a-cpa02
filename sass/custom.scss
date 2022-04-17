@@ -1,0 +1,13 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+$primary: #c29938;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+
+$theme-colors: (
+  "pink": #DAA2AB
+);

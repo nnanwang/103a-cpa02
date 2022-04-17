@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+<footer class="foot">
+    <span class="foot__copy">&copy; 2021 {{ site:author | escape}}
+      <ul class="foot__list">
+      <li><a class="footer__link" href="https://github.com/nnanwang" target="_blank">GitHub</a></li>
+      <li><a class="footer__link" href="https://www.linkedin.com/in/nnanwang/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </span>
+  
+    <ul class="foot__list">
+      <span class="foot__copy"><li>Hello from Shanghai.</li>
+      <li>{{ site.time | date: '%B %Y'}}</li></span>
+    </ul>
+  
+  
+  </footer>
+  
+  <script src="{{ '/assets/js/app.min.js' | prepend: site.baseurl }}"></script>
+  
