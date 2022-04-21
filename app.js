@@ -68,6 +68,16 @@ app.use(
   })
 );
 
+const auth = require('./routes/auth')
+app.use(auth)
+
+const isLoggedIn = (req,res,next) => {
+  if (res.locals.loggedIn) {
+    next();
+  }
+  else res.redirect('/login');
+}
+
 /* ************************
   Loading (or reloading) the data into a collection
    ************************ */
@@ -81,7 +91,46 @@ app.get("/", (req, res, next) => {
   app.get("/", (req, res, next) => {
     res.render("footer");
   });
-  
+
+  app.get("/",
+  async (req, res, next) => {
+    const all_messages = await Message.find({}).sort({topic: 1, message: 1});
+
+    messages = {}
+    for (msg of all_messages){
+      if (msg.topic in messages){
+        messages[msg.topic].push(msg);
+      } else {
+        messages[msg.topic] = [msg];
+      }
+    }
+    res.locals.messages = messages
+    res.render("layout");
+});
+
+app.post('/post_message',
+  isLoggedIn,
+  async (req,res,next) => {
+    try{
+      const {topic, message} = req.body; // get topic and message from the body
+
+      const CreateAt = new Date(); // get the current date/time
+
+      const message_id = req.session.next_id;
+      req.session.next_id += 1; // get the message's id
+      let data = { // create the data object
+        topic: topic, 
+        message: message, 
+        date: CreateAt, 
+        id: message_id} 
+      let item = new Message(data) // create the database object (and test the types are correct)
+      await item.save() // save the message item in the database
+      res.redirect('/')  // go back to the todo page
+    } catch (e){
+      next(e);
+    }
+  }
+)
 app.get("/about", (req, res, next) => {
     res.render("about");
   });
