@@ -109,7 +109,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.post('/post_message',
-  isLoggedIn,
+  
   async (req,res,next) => {
     try{
       const {topic, message} = req.body; // get topic and message from the body
@@ -119,7 +119,8 @@ app.post('/post_message',
       const message_id = req.session.next_id;
       req.session.next_id += 1; // get the message's id
       let data = { // create the data object
-        topic: topic, 
+    
+        subject: subject, 
         message: message, 
         date: CreateAt, 
         id: message_id} 
@@ -131,12 +132,20 @@ app.post('/post_message',
     }
   }
 )
-app.get("/about", (req, res, next) => {
-    res.render("about");
+app.get("/contact", (req, res, next) => {
+    res.render("contact");
   });
 
-app.get("/portfolio", (req, res, next) => {
-  res.render("portfolio");
+app.get("/life", (req, res, next) => {
+  res.render("life");
+});
+
+app.get("/project", (req, res, next) => {
+  res.render("project");
+});
+
+app.get("/honor", (req, res, next) => {
+  res.render("honor");
 });
 
 // here we catch 404 errors and forward to error handler

@@ -15,7 +15,7 @@
 */
 
 const express = require('express');
-const Message = require('../models/Message');
+const Message = require('../models/contact_forms');
 const router = express.Router();
 const saltRounds = 10;
 var password = "123456";

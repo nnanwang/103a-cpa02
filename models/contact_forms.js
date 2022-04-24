@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 
 var messageSchema = Schema( 
   {
-    topic: String,
-    message: String,
-    date: Date,
-    id: Number
+    name: String,
+    email: String,
+    subject: String,
+    message: String
   },
-  {collection:"Message set"}
+  {collection:"Contact Forms"}
 );
 
 module.exports = mongoose.model( 'message', messageSchema );
