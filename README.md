@@ -10,6 +10,8 @@ This project is to create a website for myself. If you want to run this project,
 ![image](https://user-images.githubusercontent.com/74788199/166177913-1c0a743a-30f4-49aa-921d-a5935fcfc34c.png)
 
 ## Contact Page
+This page allows user to send messages to me if they want to cooperate with me in many fields. 
+They can choose the options of the fields in the "Selected Subject" box. If the message was sent, the page will show the word "item saved to database". And the contact form files will be updated to mongoose.
 ![image](https://user-images.githubusercontent.com/74788199/166178094-dec5ccac-a7f8-4e1f-b25e-32c69b40206f.png)
 
 ## Honor Page
