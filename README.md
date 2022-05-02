@@ -2,9 +2,9 @@
 ## What your app does and how to use it (with screenshots and recording)
 
 This project is to create a website for myself. If you want to run this project, you need to run this locally or create your own mongodb_URI to run it.
-- ### web link: 
+- #### web link: 
 
-- ### Introductory video link:
+- #### Introductory video link:
 
 ## Home Page
 ![image](https://user-images.githubusercontent.com/74788199/166177913-1c0a743a-30f4-49aa-921d-a5935fcfc34c.png)
