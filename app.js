@@ -7,9 +7,11 @@ const debug = require("debug")("personalapp:server");
 const layouts = require("express-ejs-layouts");
 const axios = require("axios")
 
+
 // *********************************************************** //
 //  Loading models
 // *********************************************************** //
+
 // const Schedule = require('./models/Schedule')
 
 // *********************************************************** //
@@ -21,11 +23,13 @@ const axios = require("axios")
 // *********************************************************** //
 
 const mongoose = require( 'mongoose' );
+const mongodb_URI = process.env.mongodb_URI
 //const mongodb_URI = 'mongodb://localhost:27017/cs103a_todo'
-const mongodb_URI = 'mongodb+srv://cs_sj:BrandeisSpr22@cluster0.kgugl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+//const mongodb_URI = 'mongodb+srv://cs103a:wn123456@cluster0.25gja.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-mongoose.connect( mongodb_URI, { useNewUrlParser: true } );
+mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
+mongoose.set('useFindAndModify', false); 
 mongoose.set('useCreateIndex', true);
 
 const db = mongoose.connection;
@@ -53,11 +57,15 @@ app.use(layouts);
 
 // Here we process the requests so they are easy to handle
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Here we specify that static files will be in the public folder
 app.use(express.static(path.join(__dirname, "public")));
+
 
 // Here we enable session handling using cookies
 app.use(
@@ -68,15 +76,12 @@ app.use(
   })
 );
 
-const auth = require('./routes/auth')
+// here is the code which handles all /login /signin /logout routes
+const auth = require('./routes/auth');
+const { deflateSync } = require("zlib");
 app.use(auth)
+const Contact = require("./models/Contact")
 
-const isLoggedIn = (req,res,next) => {
-  if (res.locals.loggedIn) {
-    next();
-  }
-  else res.redirect('/login');
-}
 
 /* ************************
   Loading (or reloading) the data into a collection
@@ -84,69 +89,69 @@ const isLoggedIn = (req,res,next) => {
 // this route loads in the courses into the Course collection
 // or updates the courses if it is not a new collection
 
-app.get("/", (req, res, next) => {
-    res.render("index");
-  });
+const isLoggedIn = (req,res,next) => {
+  if (req.session.loggedIn) {
+    next();
+  }
+  else res.redirect('/login');
+}
 
-  app.get("/", (req, res, next) => {
-    res.render("footer");
-  });
-
-  app.get("/",
-  async (req, res, next) => {
-    const all_messages = await Message.find({}).sort({topic: 1, message: 1});
-
-    messages = {}
-    for (msg of all_messages){
-      if (msg.topic in messages){
-        messages[msg.topic].push(msg);
-      } else {
-        messages[msg.topic] = [msg];
-      }
-    }
-    res.locals.messages = messages
-    res.render("layout");
+app.get("/", 
+(req, res, next) => {
+  res.render("index");
 });
 
-app.post('/post_message',
+app.get("/contactForms",
+isLoggedIn,
+ (req, res, next) => {
+  res.render("contactForms");
+});
   
+app.get("/contact", function(req, res) {
+  res.render("contact");
+});
+  
+// Handling data after submission of form
+app.post("/post_contact", (req, res) => {
+  const myData = new Contact({
+    name: req.body.name,
+    email: req.body.email,
+    subject: req.body.subject,
+    message: req.body.message
+  });
+
+    myData.save()
+      .then(item => {
+        res.send("item saved to database")
+      })
+      .catch(err => {
+        res.status(400).send("unable to save to database")
+      });
+
+});
+
+app.post('/contact/bySubject',
+  // show list of contact forms in a given subject
   async (req,res,next) => {
-    try{
-      const {topic, message} = req.body; // get topic and message from the body
-
-      const CreateAt = new Date(); // get the current date/time
-
-      const message_id = req.session.next_id;
-      req.session.next_id += 1; // get the message's id
-      let data = { // create the data object
-    
-        subject: subject, 
-        message: message, 
-        date: CreateAt, 
-        id: message_id} 
-      let item = new Message(data) // create the database object (and test the types are correct)
-      await item.save() // save the message item in the database
-      res.redirect('/')  // go back to the todo page
-    } catch (e){
-      next(e);
-    }
+    const subject = req.body.subject;
+    req.session.contacts = await Contact.find({subject:subject})
+    res.redirect('/contact_list')
   }
 )
-app.get("/contact", (req, res, next) => {
-    res.render("contact");
-  });
 
-app.get("/life", (req, res, next) => {
-  res.render("life");
+app.get('/contact_list', isLoggedIn, (req, res, next) => {
+  res.locals.contacts = req.session.contacts;
+  res.render("contact_list");
 });
 
-app.get("/project", (req, res, next) => {
-  res.render("project");
+app.get('/theProject', (req, res, next) => {
+  res.render("theProject");
 });
 
 app.get("/honor", (req, res, next) => {
   res.render("honor");
 });
+
 
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {
@@ -158,8 +163,10 @@ app.use(function(req, res, next) {
 //  Starting up the server!
 // *********************************************************** //
 //Here we set the port to use between 1024 and 65535  (2^16-1)
-const port = "5000";
+const port = process.env.PORT || "5000";
 app.set("port", port);
+console.log('connecting on port '+port)
+
 
 // and now we startup the server listening on that port
 const http = require("http");

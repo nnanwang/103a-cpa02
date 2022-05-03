@@ -1,14 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <title>Hello World Simple App</title>
+        <title>Nan Wang' personal page</title>
+            <style>
+            .card {
+              box-shadow: 0 4px 8px 0 rgba(79, 79, 79, 0.2);
+              transition: 0.3s;
+              width: 40%;
+            }
+            
+            .card:hover {
+              box-shadow: 0 8px 16px 0 rgba(71, 71, 71, 0.2);
+            }
+            
+            .container {
+              padding: 2px 16px;
+            }
+            </style>
+           
     </head>
     <body>     
-        </div>
         <div class="row" >
             <div class="column" style="width: 30%;" > 
                 <div class="row ">
@@ -37,21 +52,17 @@
                     <i class="fa fa-envelope" aria-hidden="true" alt="" 
                     style ="color:rgb(95, 95, 95); margin-left: 5px;"></i></a>      
             </figure>
-           
-
-
-
-            
+    
         </div> 
     </div>
         <div class="column" style="width: 70%; margin-top: 60px;" >
         
-            <div class="row cmn_hdngg" style="margin: 20px; width: auto;">
+            <div class="row" style="margin: 20px; width: auto;">
                 
-                    <div class="cmn_hdngg_headd">
+                    <div class="intro">
                         <h1 style="color: rgb(71, 71, 71)"><strong>Welcome 
                             
-                            <span class="cmn_hdngg_headd" style="color: rgb(234, 204, 206)">!</span></strong></h1>
+                            <span class="intro" style="color: rgb(234, 204, 206)">!</span></strong></h1>
                     </div>
 
                     <div class="paragraph">
@@ -67,39 +78,58 @@
                         </p>               
                     </div>  
             </div>
-
-            <div class="column" style="margin: 20px; margin-left: 30px">
-                <div class="project; rounded float-left" alt="...">
-                    <img src="PO-01.png"                    
-                    style=" 
-                    display: block;
-                    margin-top: 30px;
-                    width:30%" 
-                    class="rounded">  
-                    <span class="title" style="color: rgb(71, 71, 71)">Projects </span>
-                </div>
-
-                <div class="project; rounded float-right" alt="...">
-                    <img src="PO-01.png"                    
-                    style=" 
-                    display: block;
-                    margin-top: 30px;
-                    width:30%" 
-                    class="rounded">  
-                    <span class="title" style="color: rgb(71, 71, 71)">Life </span>
-                    
-                </div>
-
-                
-
+            <br>
+            <div class="intro-projects" style="margin: 30px; margin-top:70px ">
+                <h4 style="color: rgb(71, 71, 71)"><span class="margin-bottom:30px"style="color: rgb(234, 204, 206)"><strong>| </strong></span>Selected Projects</h4>
             </div>
+
+            <div class="card-group " style="margin: 20px; margin-left: 30px " >
+                <div class="card border-white" style>
+                  <img class="card-img-top" src="1-01.png" alt="Card image cap">
+                  <div class="card-body" >
+                    <h5 class="card-title" style ="color:rgb(218, 162, 171)">MyMentor</h5>
+                    <p class="card-text lh-sm" style="color: rgb(71, 71, 71)">
+                        <small>MyMentor is a social network for current students in university to connect, 
+                        share their academic, career, social experiences; and learn.</small></p>
+                  </div>
+                </div>
+                <div class="card border-white" style="margin-left: 30px">
+                  <img class="card-img-top" src="3-01.png" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title" style ="color:rgb(218, 162, 171)">‘LOVE IMPRESSION’ Chocolate</h5>
+                    <p class="card-text lh-sm" style="color: rgb(71, 71, 71)">
+                        <small>Exhibition: The Future of Sweets, <span class="fst-italic">Germany</span> <br>
+                        Summer Fancy Food Show, <span class="fst-italic">U.S.</span>
+                        </small></p>
+                  </div>
+                </div>
+                <div class="card border-white" style="margin-left: 30px">
+                  <img class="card-img-top" src="fresh-01.png" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title" style ="color:rgb(218, 162, 171)">FRESH HERB</h5>
+                    <p class="card-text lh-sm" style="color: rgb(71, 71, 71)">
+                        <small>FRESH HERB is a skincare brand for young people. 
+                        Each series has a Chinese traditional formula, which mainly include a pair of flower and herb.<br>
+                        Award: Successful Design Grand Award, <span class="fst-italic" style="color:rgb(144, 144, 144)">China</span> 
+                        </small></p>
+                  </div>
+                </div>
                 
+              </div>
+              <br>
+              
+              <a href="/theProject" class="btn " style ="margin-left: 20px; margin-bottom: 70px; color:rgb(218, 162, 171)">
+                <u>Show More Projects...</u></a>
+            
+    
+ 
+                </div> 
             </div>
         </div>
     </div>        
 
 
-        <hr>
+
 
     </body>   
 </html>

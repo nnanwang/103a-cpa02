@@ -1,0 +1,39 @@
+<h3 style="color:rgb(218, 162, 171); margin-top:100px; margin-left:100px">The Contact Forms are</h3>
+<p style="color:rgb(95, 95, 95); margin-left:100px">Here we want a contact form list with the name, email, subject, message</p>
+<br>
+<div style="margin-right:100px; margin-left:100px">
+<table class="table table-sm" >
+    <thead style="color:rgb(95, 95, 95)">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <% for (con of contacts) {
+        const name = con['name'];
+        const email = con['email'];
+        const subject = con['subject'];
+        const message=con['message']
+         %>
+      <tr style="color:rgb(95, 95, 95)" class="mb-2"> 
+        <td><%= con['name'] %></td>
+        <td>
+            <%= con['email'] %>
+        </td>
+        <td>
+            <strong><%= con['subject'] %></strong>
+        </td>
+        <td>
+            <%= con['message'] %>   
+        </td>
+ 
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+</div>
+
+

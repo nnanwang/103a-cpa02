@@ -15,7 +15,7 @@
 */
 
 const express = require('express');
-const Message = require('../models/contact_forms');
+const Contact = require('../models/Contact');
 const router = express.Router();
 const saltRounds = 10;
 var password = "123456";
@@ -30,12 +30,6 @@ try{
 // where we look at a request and process it!
 router.use(function(req, res, next) {
   console.log(`${req.method} ${req.url} ${new Date()}`);
-  if (req.session.next_id != null){
-    res.locals.loggedIn = true
-  } else{
-    res.locals.loggedIn = false
-    res.locals.user = null
-  }
   next();
 });
 
@@ -48,10 +42,8 @@ router.post('/login',
     try {
       const passphrase = req.body.passphrase
       if (passphrase == password) {
-        let messages = await Message.find({});
-        console.log("Have message ", messages.length)
-        req.session.next_id = messages.length + 1;
-        res.redirect('/')
+        req.session.loggedIn = true
+        res.redirect('/contactForms')
       } else {
         res.redirect('/login')
       }
