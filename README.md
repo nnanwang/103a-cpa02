@@ -20,16 +20,16 @@ They can choose the options of the fields in the "Selected Subject" box. If the 
 ![image](https://user-images.githubusercontent.com/74788199/166178094-dec5ccac-a7f8-4e1f-b25e-32c69b40206f.png)
 <img width="951" alt="image" src="https://user-images.githubusercontent.com/74788199/166572433-a3a38648-adda-4670-bdc0-a326234da2c1.png">
 
-- ## login Page (hide page)
+- ## login Page (hidden page)
 - This page is not show on the navbar, and it can only login by me.
 If I login, I can search all the contact forms by subject.
 <img width="1222" alt="image" src="https://user-images.githubusercontent.com/74788199/166399268-055bb93b-4ab1-4093-a2d8-d9cf5cfbad13.png">
 
-- ## Select the contact form by subject
+- ## Select the contact form by subject (hidden page)
 - This page is to help me select the subject type of the contact forms.
 <img width="1213" alt="image" src="https://user-images.githubusercontent.com/74788199/166399613-063cc733-6de3-4980-9fc5-068dfe9dc491.png">
 
-- ## list of contact forms
+- ## list of contact forms (hidden page)
 - Show the list of contact forms with the selected subject from the mongoose dataset.
 <img width="1167" alt="image" src="https://user-images.githubusercontent.com/74788199/166399710-fde46f2b-21a7-4b04-9558-802c97a82e8e.png">
 
