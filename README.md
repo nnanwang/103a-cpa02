@@ -2,7 +2,7 @@
 ## What your app does and how to use it (with screenshots and recording)
 
 This project is to create a website for myself. If you want to run this project, you need to run this locally or create your own mongodb_URI to run it.
-- #### web link: https://salty-hamlet-84995.herokuapp.com/
+- #### web link: https://nanwang.herokuapp.com/
 - #### Introductory video link: https://brandeis.zoom.us/rec/share/2T7ipuoa10tB5SZyhYB-J-G87CRbgzWxEG2E5CIK1GhF_AXVYjCbzGBbXx2dBlA6.C-GAudS654_RPd4V?startTime=1651614033000
 
 - ## Home Page
